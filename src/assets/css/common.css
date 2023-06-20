@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+:root{
+    --fc_01: #1E1E1E;
+    --fc_02: #B4B4B4;
+    --fc_03: #FF5353;
+    --fc_04: #FFC045;
+    --fc_05: #7EE050;
+
+    --bg_01: #1E1E1E;
+    --bg_02: #F4F4F4;
+    --bg_03: #FF5353;
+    --bg_04: #FFC045;
+    --bg_05: #7EE050;
+
+    --placeholder:#B4B4B4;
+}
+
+/* body{background:var(--bg_02, #f4f4f4); min-width:102.4rem;} */
+
+.hidden {position:relative; display:block; height:1px; width:1px; border:0; clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%); word-break:initial; word-wrap:initial; z-index:-1; overflow:hidden;}
+.dimmed {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); filter:alpha(opacity=60); touch-action:none; z-index:100;}
+.no_scroll,
+.no_scroll_idx {overflow:hidden;}
