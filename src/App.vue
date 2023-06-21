@@ -10,8 +10,8 @@
   </div>
 
   <Container :post="post" />
+  <button @click="more" type="button" class="btn_more">더보기</button>
 
-  <div class="sample-box">임시박스</div>
   
   <div class="footer">
     <ul class="footer-button-plus">
@@ -24,12 +24,27 @@
 <script>
 import post from './assets/data.js'
 import Container from './components/Container.vue'
+import axios from 'axios'
+// axios.get()
+// axios.post()
 
 export default {
   name:'App',
   data(){
     return {
       post : post,
+    }
+  },
+  methods: {
+    more(){
+      axios.get('https://codingapple1.github.io/vue/more0.json')
+      .then( result => {
+        this.post.push(result.data);
+      })
+      .catch( error =>{
+        // 요청 실패 시
+        console.log(error);
+      })
     }
   },
   components:{
@@ -50,7 +65,9 @@ export default {
 .footer {width:100%; position:sticky; bottom:0; padding-bottom:10px; background-color:white;}
 .footer-button-plus {width:80px; margin:auto; text-align:center; cursor:pointer; font-size:24px; padding-top:12px;}
 
-.sample-box { width:100%; height:600px; background-color:bisque;}
+.btn_more{display:block; width:calc(100% - 3.2rem); height:4.2rem; border-radius:0.5rem; border:1px solid #ddd; margin:2rem auto 1rem;}
+
+
 .inputfile {display:none;}
 .input-plus {cursor:pointer;}
 
