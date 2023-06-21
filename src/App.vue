@@ -10,7 +10,7 @@
   </div>
 
   <Container :post="post" />
-  <button @click="more" type="button" class="btn_more">더보기</button>
+  <button @click="more();" type="button" class="btn_more">더보기</button>
 
   
   <div class="footer">
@@ -33,13 +33,26 @@ export default {
   data(){
     return {
       post : post,
+      get: 0,
     }
   },
   methods: {
     more(){
-      axios.get('https://codingapple1.github.io/vue/more0.json')
+      if( this.get > 1 ){
+
+        const btn_more = document.querySelector(".btn_more");
+        const p = document.createElement("p");
+        p.innerText = "게시물이 없습니다.";
+        p.classList.add("no_post");
+        btn_more.after(p);
+        btn_more.remove();
+        
+        return;
+      }
+      axios.get(`https://codingapple1.github.io/vue/more${this.get}.json`)
       .then( result => {
         this.post.push(result.data);
+        this.get++;
       })
       .catch( error =>{
         // 요청 실패 시
@@ -66,6 +79,7 @@ export default {
 .footer-button-plus {width:80px; margin:auto; text-align:center; cursor:pointer; font-size:24px; padding-top:12px;}
 
 .btn_more{display:block; width:calc(100% - 3.2rem); height:4.2rem; border-radius:0.5rem; border:1px solid #ddd; margin:2rem auto 1rem;}
+.no_post{text-align:center; padding:9rem 1.6rem; font-size:1.4rem; color:#999;}
 
 
 .inputfile {display:none;}
