@@ -2,7 +2,7 @@
     <div class="writer">
         <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="write">
-            <textarea class="write-box">write!</textarea>
+            <textarea class="write-box" @change="sendText">write!</textarea>
         </div>
     </div>
 </template>
@@ -10,6 +10,11 @@
 <script>
 export default {
     name: 'compWrite',
+    methods: {
+      sendText(){
+        this.$emits('write', this.$event.target.value);
+      }  
+    },
     props: {
         uploadImage: String,
     }

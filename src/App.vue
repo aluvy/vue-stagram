@@ -2,24 +2,24 @@
   <div class="header">
     <h1 class="logo"><a href="#" title="vue-stagram"></a></h1>
     <div class="header-button-left">
-      <a href="#">Cancel</a>
+      <a href="#" v-if="tab==1 || tab==2" @click="tab=0">Cancel</a>
     </div>
     <div class="header-button-right">
-      <a href="#">Next</a>
+      <a href="#" v-if="tab==1" @click="tab=2">Next</a>
+      <a href="#" v-if="tab==2" @click="publish">Write</a>
     </div>
   </div>
 
-  <Container :post="post" :tab="tab" :uploadImage="uploadImage" />
-  <button @click="more();" type="button" class="btn_more">더보기</button>
+  <Container :post="post" :tab="tab" :uploadImage="uploadImage" @write=" n => uploadText=n " />
+  <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
 
   
   <div class="footer">
-    <div class="file_wrap">
+    <div class="file_wrap" v-if="tab==0">
       <input type="file" id="file" class="inputfile" accept="image/*" multiple @change="upload">
       <label for="file" class="input-plus" title="이미지 업로드"></label>
     </div>
   </div>
-
 
 </template>
 
@@ -36,9 +36,24 @@ export default {
       get: 0,
       tab: 0,
       uploadImage: '',
+      uploadText: '',
     }
   },
   methods: {
+    publish(){
+      const newPost = {
+        name: "aluvy",
+        userImage: "./img/profile1.jpg",
+        postImage: this.uploadImage,
+        likes: 0,
+        date: "May 15",
+        liked: false,
+        content: this.uploadText,
+        filter: "perpetua"
+      };
+      this.post.unshift(newPost);
+      this.tab = 0;
+    },
     upload(e){
       const file = e.target.files;  // 업로드한 파일이 담겨있음
       const type = "image";
@@ -51,7 +66,7 @@ export default {
       const url = URL.createObjectURL(file[0]); // 업로드한 파일의 임시 URL
       this.tab = 1;
       this.uploadImage = url;
-      
+
     },
     more(){
       if( this.get > 1 ){
