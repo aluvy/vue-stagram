@@ -40,14 +40,18 @@ export default {
   },
   methods: {
     upload(e){
-      let file = e.target.files;  // 업로드한 파일이 담겨있음\
-      // if( file[0].type == "이미지가 있는지" ){
-        this.tab = 1;
-      // }
-      let url = URL.createObjectURL(file[0]); // 업로드한 파일의 임시 URL
+      const file = e.target.files;  // 업로드한 파일이 담겨있음
+      const type = "image";
+
+      if( file[0].type.indexOf(type) == -1 ){   // 문자열이 존재하지 않으면 -1 리턴
+        alert("이미지만 업로드 해주세요.");
+        return;
+      }
+
+      const url = URL.createObjectURL(file[0]); // 업로드한 파일의 임시 URL
+      this.tab = 1;
       this.uploadImage = url;
       
-      console.log(file, url);
     },
     more(){
       if( this.get > 1 ){
