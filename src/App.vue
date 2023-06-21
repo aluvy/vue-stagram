@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <Container :post="post" :tab="tab" :uploadImage="uploadImage" @write=" n => uploadText=n " />
+  <Container :post="post" :tab="tab" :uploadImage="uploadImage" @write=" n => uploadText = n " />
   <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
 
   
@@ -99,6 +99,7 @@ export default {
 
 <style>
 @import './assets/css/style.css';
+@import './assets/css/cssgram.css';
 
 
 .header {height:4.4rem; background:#fff; position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; color:#333; box-sizing:border-box; padding:0 1.6rem; border-bottom:1px solid #ddd;}

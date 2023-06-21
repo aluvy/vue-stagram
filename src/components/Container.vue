@@ -4,28 +4,23 @@
   </div>
 
   <div v-if="tab==1">
-    <!-- <Filter :uploadImage="uploadImage" /> -->
     <div class="filter">
         <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="filters">
         <ul>
-            <li class="filter-1"></li>
-            <li class="filter-1"></li>
-            <li class="filter-1"></li>
-            <li class="filter-1"></li>
-            <li class="filter-1"></li>
+            <li class="filter-1" v-for="(a,i) in filter" :key="i">
+              <FilterBox :uploadImage="uploadImage"></FilterBox>
+            </li>
         </ul>
         </div>
     </div>
-
   </div>
   
   <div v-if="tab==2">
-    <!-- <Write :uploadImage="uploadImage" @write="console.log( 'container', $event )" /> -->
     <div class="writer">
         <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="write">
-            <textarea class="write-box" @change="sendText">write!</textarea>
+            <textarea class="write-box" @input="sendText">write!</textarea>
         </div>
     </div>
 
@@ -35,14 +30,15 @@
 
 <script>
 import Post from '../components/Post.vue'
-// import Filter from '../components/Filter.vue'
-// import Write from '../components/Write.vue'
+import FilterBox from '../components/FilterBox.vue'
 
 export default {
   name: 'compContainer',
   data(){
     return {
-      
+      filter: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
     }
   },
   props: {
@@ -52,8 +48,7 @@ export default {
   },
   components: {
     Post,
-    // Filter,
-    // Write,
+    FilterBox,
   },
   emits: ['write'],
   methods: {
@@ -65,12 +60,12 @@ export default {
 </script>
 
 <style>
-.upload-image{padding-bottom:100%; background-size:cover; background-position:center;}
 .filters{overflow-x:scroll; white-space:nowrap;}
-.filter-1 {width:100px; height:100px; background-color:cornflowerblue; margin:10px 10px 10px auto; padding:8px; display:inline-block; color :white; background-size:cover;}
 .filters::-webkit-scrollbar {height:5px;}
 .filters::-webkit-scrollbar-track {background:#f1f1f1;}
 .filters::-webkit-scrollbar-thumb {background:#888; border-radius:5px;}
 .filters::-webkit-scrollbar-thumb:hover {background:#555;}
-.write-box {border:none; width:90%; height:100px; padding:15px; margin:auto; display:block; outline:none;}
+.filter-1 {display:inline-block; margin:1rem 1rem 1rem auto;}
+
+.upload-image{padding-bottom:100%; background-size:cover; background-position:center;}
 </style>
