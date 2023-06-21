@@ -37,7 +37,7 @@ body {
     color:var(--fc_01, #1E1E1E);
 	/* font-family: 'pretendard', sans-serif; */
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-	font-size:1.6rem;
+	font-size:1.4rem;
 }
 ol, ul {
 	list-style: none;

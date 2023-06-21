@@ -1,9 +1,8 @@
 var data = [
     {
-        name: "Kim Hyun",
-        // userImage: "https://placeimg.com/100/100/arch",
-        userImage: "profile1.jpg",
-        postImage: "https://placeimg.com/640/480/arch",
+        name: "aluvy",
+        userImage: "./img/profile1.jpg",
+        postImage: "./img/photo1.jpg",
         likes: 36,
         date: "May 15",
         liked: false,
@@ -11,9 +10,9 @@ var data = [
         filter: "perpetua"
     },
     {
-        name: "John Doe",
-        userImage: "https://placeimg.com/200/200/people",
-        postImage: "https://placeimg.com/640/480/people",
+        name: "dlwlrma",
+        userImage: "./img/profile2.jpg",
+        postImage: "./img/photo2.jpg",
         likes: 20,
         date: "Apr 20",
         liked: false,
@@ -21,9 +20,9 @@ var data = [
         filter: "clarendon"
     },
     {
-        name: "Minny",
-        userImage: "https://placeimg.com/100/100/animals",
-        postImage: "https://placeimg.com/640/480/animals",
+        name: "tmany_official",
+        userImage: "./img/profile3.jpg",
+        postImage: "./img/photo3.jpg",
         likes: 49,
         date: "Apr 4",
         liked: false,
