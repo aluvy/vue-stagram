@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Post v-for="(a,i) in data" :key="i" :item="a" :idx="i" />
+    <Post v-for="(a,i) in post" :key="i" :post="a" :idx="i" />
   </div>
 </template>
 
@@ -10,8 +10,7 @@ import Post from '../components/Post.vue'
 export default {
   name: 'compContainer',
   props: {
-    // msg: String
-    data: Array,
+    post: Object,
   },
   components: {
     Post,
