@@ -9,24 +9,24 @@
     </div>
   </div>
 
-  <Container :post="post" />
+  <Container :post="post" :tab="tab" :uploadImage="uploadImage" />
   <button @click="more();" type="button" class="btn_more">더보기</button>
 
   
   <div class="footer">
-    <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile">
-      <label for="file" class="input-plus"></label>
-    </ul>
+    <div class="file_wrap">
+      <input type="file" id="file" class="inputfile" accept="image/*" multiple @change="upload">
+      <label for="file" class="input-plus" title="이미지 업로드"></label>
+    </div>
   </div>
+
+
 </template>
 
 <script>
 import post from './assets/data.js'
 import Container from './components/Container.vue'
 import axios from 'axios'
-// axios.get()
-// axios.post()
 
 export default {
   name:'App',
@@ -34,9 +34,21 @@ export default {
     return {
       post : post,
       get: 0,
+      tab: 0,
+      uploadImage: '',
     }
   },
   methods: {
+    upload(e){
+      let file = e.target.files;  // 업로드한 파일이 담겨있음\
+      // if( file[0].type == "이미지가 있는지" ){
+        this.tab = 1;
+      // }
+      let url = URL.createObjectURL(file[0]); // 업로드한 파일의 임시 URL
+      this.uploadImage = url;
+      
+      console.log(file, url);
+    },
     more(){
       if( this.get > 1 ){
 
@@ -46,7 +58,7 @@ export default {
         p.classList.add("no_post");
         btn_more.after(p);
         btn_more.remove();
-        
+
         return;
       }
       axios.get(`https://codingapple1.github.io/vue/more${this.get}.json`)
@@ -74,15 +86,13 @@ export default {
 .header .logo{position:absolute; left:50%; top:0; height:100%; transform:translateX(-50%);}
 .header .logo a{display:block; width:10.3rem; height:100%; background:url(./assets/img/logo.svg) 0 1rem no-repeat; background-size:100% auto;}
 
-
-.footer {width:100%; position:sticky; bottom:0; padding-bottom:10px; background-color:white;}
-.footer-button-plus {width:80px; margin:auto; text-align:center; cursor:pointer; font-size:24px; padding-top:12px;}
-
 .btn_more{display:block; width:calc(100% - 3.2rem); height:4.2rem; border-radius:0.5rem; border:1px solid #ddd; margin:2rem auto 1rem;}
 .no_post{text-align:center; padding:9rem 1.6rem; font-size:1.4rem; color:#999;}
 
 
-.inputfile {display:none;}
-.input-plus {cursor:pointer;}
+.footer {position:sticky; bottom:0; background:#000; text-align:center;}
 
+.file_wrap{position:relative;}
+.file_wrap .inputfile {position:absolute; left:0; top:0; width:1px; height:1px; overflow:hidden; padding:0; margin:0; border:0;  clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%); word-break:initial; word-wrap:initial; z-index:-1;}
+.input-plus {display:inline-block; width:4rem; height:4rem; cursor:pointer; background:url(./assets/img/ico_camera.svg) 50% 50% no-repeat; background-size:2.4rem;}
 </style>
