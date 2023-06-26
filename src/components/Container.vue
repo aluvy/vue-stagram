@@ -7,11 +7,11 @@
     <div class="filter">
         <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="filters">
-        <ul>
-            <li class="filter-1" v-for="(a,i) in filter" :key="i">
-              <FilterBox :uploadImage="uploadImage"></FilterBox>
-            </li>
-        </ul>
+          <ul>
+              <li class="filter-1" v-for="(a,i) in filter" :key="i">
+                <FilterBox :uploadImage="uploadImage" :filter="a"></FilterBox>
+              </li>
+          </ul>
         </div>
     </div>
   </div>

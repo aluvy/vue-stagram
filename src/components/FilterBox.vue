@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-item" :style="{ backgroundImage : `url(${uploadImage})`}"></div> 
+    <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div> 
 </template>
 
 <script>
@@ -7,6 +7,7 @@ export default {
     name: 'compFilterBox',
     props: {
         uploadImage: String,
+        filter: String,
     }
 }
 </script>
