@@ -4,7 +4,7 @@
             <div class="profile" :style="{ backgroundImage : `url('${post.userImage}')` }"></div>
             <span class="profile-name">{{ post.name }}</span>
         </div>
-        <div class="post-body" :style="{ backgroundImage : `url('${post.postImage}')` }"></div>
+        <div class="post-body" :class="`${post.filter}`" :style="{ backgroundImage : `url('${post.postImage}')` }"></div>
         <div class="post-content">
             <div class="icon">
                 <button type="button" class="btn_like" title="좋아요"></button>
@@ -27,6 +27,7 @@ export default {
         data: Object,
         post: Object,
         idx: Number,
+        filter: Text,
     }
 }
 </script>

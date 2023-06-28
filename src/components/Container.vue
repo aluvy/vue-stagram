@@ -5,7 +5,7 @@
 
   <div v-if="tab==1">
     <div class="filter">
-        <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
+        <div class="upload-image" :class="`${SelectFilter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="filters">
           <ul>
               <li class="filter-1" v-for="(a,i) in filter" :key="i">
@@ -18,12 +18,11 @@
   
   <div v-if="tab==2">
     <div class="writer">
-        <div class="upload-image" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
+        <div class="upload-image" :class="`${SelectFilter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="write">
             <textarea class="write-box" @input="sendText">write!</textarea>
         </div>
     </div>
-
   </div>
 
 </template>
@@ -45,6 +44,7 @@ export default {
     post: Object,
     tab: Number,
     uploadImage: String,
+    SelectFilter: String,
   },
   components: {
     Post,

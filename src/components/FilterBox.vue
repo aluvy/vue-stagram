@@ -1,6 +1,8 @@
 <template>
-    <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
-    <p class="filter-name"><slot></slot></p>
+    <div @click="mittEvent">
+        <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
+        <p class="filter-name"><slot></slot></p>
+    </div>
 </template>
 
 <script>
@@ -9,6 +11,11 @@ export default {
     data(){
         return {
             msg: 'hello'
+        }
+    },
+    methods: {
+        mittEvent(){
+            this.emitter.emit('FilterName', this.filter);
         }
     },
     props: {

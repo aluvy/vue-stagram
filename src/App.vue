@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <Container :post="post" :tab="tab" :uploadImage="uploadImage" @write=" n => uploadText = n " />
+  <Container :post="post" :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
   <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
 
   
@@ -37,6 +37,7 @@ export default {
       tab: 0,
       uploadImage: '',
       uploadText: '',
+      SelectFilter: '',
     }
   },
   methods: {
@@ -49,7 +50,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.uploadText,
-        filter: "perpetua"
+        filter: this.SelectFilter,
       };
       this.post.unshift(newPost);
       this.tab = 0;
@@ -93,6 +94,12 @@ export default {
   },
   components:{
     Container,
+  },
+  mounted(){
+    this.emitter.on('FilterName', (a)=>{
+      this.SelectFilter = a;
+      console.log(this.SelectFilter);
+    });
   }
 }
 </script>
