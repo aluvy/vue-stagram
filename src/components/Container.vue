@@ -9,7 +9,7 @@
         <div class="filters">
           <ul>
               <li class="filter-1" v-for="(a,i) in filter" :key="i">
-                <FilterBox :uploadImage="uploadImage" :filter="a"></FilterBox>
+                <FilterBox :uploadImage="uploadImage" :filter="a">{{ a }}</FilterBox>
               </li>
           </ul>
         </div>
