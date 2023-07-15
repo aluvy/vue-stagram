@@ -10,6 +10,8 @@
     </div>
   </div>
 
+  <h4>안녕 {{ $store.state.name }}</h4>
+
   <Container :post="post" :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
   <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
 

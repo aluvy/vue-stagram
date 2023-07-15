@@ -6,4 +6,6 @@ let emitter = mitt();
 let app = createApp(App)
 app.config.globalProperties.emitter = emitter;  // global value
 
-app.mount('#app')
+import store from './assets/store.js'
+
+app.use(store).mount('#app')
