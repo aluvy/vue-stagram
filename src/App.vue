@@ -10,16 +10,9 @@
     </div>
   </div>
 
-  <h4>안녕 {{ $store.state.name }}</h4>
-  <button type="button" @click="$store.commit('changeName')">버튼</button>
-
-  <h4>나이는 {{ $store.state.age }}</h4>
-  <button type="button" @click="$store.commit('addAge', 10)">나이를 올리자</button>
-
   <Container :post="post" :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
   <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
 
-  
   <div class="footer">
     <div class="file_wrap" v-if="tab==0">
       <input type="file" id="file" class="inputfile" accept="image/*" multiple @change="upload">
@@ -60,6 +53,7 @@ export default {
       };
       this.post.unshift(newPost);
       this.tab = 0;
+      this.$store.commit('LikesItemShift');
     },
     upload(e){
       const file = e.target.files;  // 업로드한 파일이 담겨있음

@@ -7,7 +7,7 @@
         <div class="post-body" :class="`${post.filter}`" :style="{ backgroundImage : `url('${post.postImage}')` }" @click="clickLikes"></div>
         <div class="post-content">
             <div class="icon">
-                <button type="button" class="btn_like" :class="{on : Likes}" title="좋아요"></button>
+                <button type="button" class="btn_like" :class="{on : $store.state.isLikes[idx]}" title="좋아요"></button>
                 <button type="button" class="btn_comment" title="댓글 달기"></button>
                 <button type="button" class="btn_dm" title="게시물 공유"></button>
                 <button type="button" class="btn_keep" title="저장"></button>
@@ -24,15 +24,9 @@
 <script>
 export default {
     name: 'compPost',
-    data(){
-        return {
-            Likes: false,
-        }
-    },
     methods: {
         clickLikes(){
-            this.Likes = !this.Likes;
-            this.$store.commit('changeLikes', [this.Likes, this.idx]);
+            this.$store.commit('changeLikes', this.idx);
         }
     },
     props: {

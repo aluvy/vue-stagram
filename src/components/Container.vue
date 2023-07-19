@@ -20,7 +20,7 @@
     <div class="writer">
         <div class="upload-image" :class="`${SelectFilter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
         <div class="write">
-            <textarea class="write-box" @input="sendText">write!</textarea>
+            <textarea class="write-box" placeholder="write!" @input="sendText"></textarea>
         </div>
     </div>
   </div>
@@ -68,4 +68,5 @@ export default {
 .filter-1 {display:inline-block; margin:1rem 1rem 1rem auto;}
 
 .upload-image{padding-bottom:100%; background-size:cover; background-position:center;}
+.write-box {width:100%; height:15rem; padding:1rem;}
 </style>
