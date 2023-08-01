@@ -1,4 +1,4 @@
-<template>
+<template>{{ $store.state.post }}
   <div v-if="tab==0">
     <Post v-for="(a,i) in post" :key="i" :post="a" :idx="i" />
   </div>

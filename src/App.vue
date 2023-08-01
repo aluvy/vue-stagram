@@ -11,7 +11,11 @@
   </div>
 
   <Container :post="post" :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
-  <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button>
+
+  <p>{{ $store.state.more }}</p>
+  <!-- <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button> -->
+  <button @click="$store.dispatch('getData')" type="button" class="btn_more" v-if="tab==0">더보기</button>
+
 
   <div class="footer">
     <div class="file_wrap" v-if="tab==0">
@@ -25,7 +29,7 @@
 <script>
 import post from './assets/data.js'
 import Container from './components/Container.vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name:'App',
@@ -70,26 +74,27 @@ export default {
 
     },
     more(){
-      if( this.get > 1 ){
 
-        const btn_more = document.querySelector(".btn_more");
-        const p = document.createElement("p");
-        p.innerText = "게시물이 없습니다.";
-        p.classList.add("no_post");
-        btn_more.after(p);
-        btn_more.remove();
+      // if( this.get > 1 ){
 
-        return;
-      }
-      axios.get(`https://codingapple1.github.io/vue/more${this.get}.json`)
-      .then( result => {
-        this.post.push(result.data);
-        this.get++;
-      })
-      .catch( error =>{
-        // 요청 실패 시
-        console.log(error);
-      })
+      //   const btn_more = document.querySelector(".btn_more");
+      //   const p = document.createElement("p");
+      //   p.innerText = "게시물이 없습니다.";
+      //   p.classList.add("no_post");
+      //   btn_more.after(p);
+      //   btn_more.remove();
+
+      //   return;
+      // }
+      // axios.get(`https://codingapple1.github.io/vue/more${this.get}.json`)
+      // .then( result => {
+      //   this.post.push(result.data);
+      //   this.get++;
+      // })
+      // .catch( error =>{
+      //   // 요청 실패 시
+      //   console.log(error);
+      // })
     }
   },
   components:{
