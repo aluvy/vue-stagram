@@ -1,6 +1,6 @@
-<template>{{ $store.state.post }}
+<template>
   <div v-if="tab==0">
-    <Post v-for="(a,i) in post" :key="i" :post="a" :idx="i" />
+    <Post v-for="(a,i) in $store.state.post" :key="i" :post="a" :idx="i" />
   </div>
 
   <div v-if="tab==1">
@@ -41,7 +41,6 @@ export default {
     }
   },
   props: {
-    post: Object,
     tab: Number,
     uploadImage: String,
     SelectFilter: String,

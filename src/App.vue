@@ -10,12 +10,9 @@
     </div>
   </div>
 
-  <Container :post="post" :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
+  <Container :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
 
-  <p>{{ $store.state.more }}</p>
-  <!-- <button @click="more();" type="button" class="btn_more" v-if="tab==0">더보기</button> -->
   <button @click="$store.dispatch('getData')" type="button" class="btn_more" v-if="tab==0">더보기</button>
-
 
   <div class="footer">
     <div class="file_wrap" v-if="tab==0">
@@ -27,17 +24,15 @@
 </template>
 
 <script>
-import post from './assets/data.js'
 import Container from './components/Container.vue'
-// import axios from 'axios'
 
 export default {
   name:'App',
   data(){
     return {
-      post : post,
       get: 0,
       tab: 0,
+
       uploadImage: '',
       uploadText: '',
       SelectFilter: '',
@@ -55,9 +50,8 @@ export default {
         content: this.uploadText,
         filter: this.SelectFilter,
       };
-      this.post.unshift(newPost);
+      this.$store.commit('setAdd', newPost);
       this.tab = 0;
-      this.$store.commit('LikesItemShift');
     },
     upload(e){
       const file = e.target.files;  // 업로드한 파일이 담겨있음
@@ -122,9 +116,9 @@ export default {
 .no_post{text-align:center; padding:9rem 1.6rem; font-size:1.4rem; color:#999;}
 
 
-.footer {position:sticky; bottom:0; background:#000; text-align:center;}
+.footer {position:sticky; bottom:0; /*background:#000;*/ text-align:center;}
 
 .file_wrap{position:relative;}
 .file_wrap .inputfile {position:absolute; left:0; top:0; width:1px; height:1px; overflow:hidden; padding:0; margin:0; border:0;  clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%); word-break:initial; word-wrap:initial; z-index:-1;}
-.input-plus {display:inline-block; width:4rem; height:4rem; cursor:pointer; background:url(./assets/img/ico_camera.svg) 50% 50% no-repeat; background-size:2.4rem;}
+.input-plus {display:block; width:100%; height:4rem; cursor:pointer; background:url(./assets/img/ico_camera.svg) 50% 50% no-repeat #000; background-size:2.4rem;}
 </style>
