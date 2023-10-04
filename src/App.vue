@@ -1,12 +1,12 @@
 <template>
   <div class="header" :class="{ hide : scroll.down }">
-    <h1 class="logo"><a href="#" title="vue-stagram"></a></h1>
+    <h1 class="logo"><a href="./" title="vue-stagram"></a></h1>
     <div class="header-button-left">
-      <a href="#" v-if="tab==1 || tab==2" @click="tab=0">Cancel</a>
+      <button type="button" v-if="tab==1 || tab==2" @click="tab=0">Cancel</button>
     </div>
     <div class="header-button-right">
-      <a href="#" v-if="tab==1" @click="tab=2">Next</a>
-      <a href="#" v-if="tab==2" @click="publish">Write</a>
+      <button type="button" v-if="tab==1" @click="tab=2">Next</button>
+      <button type="button" v-if="tab==2" @click="publish">Write</button>
     </div>
   </div>
 
