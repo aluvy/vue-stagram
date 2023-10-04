@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ hide : scroll.down }">
     <h1 class="logo"><a href="#" title="vue-stagram"></a></h1>
     <div class="header-button-left">
       <a href="#" v-if="tab==1 || tab==2" @click="tab=0">Cancel</a>
@@ -31,17 +31,22 @@ export default {
   name:'App',
   data(){
     return {
-      get: 0,
       tab: 0,
 
       uploadImage: '',
       uploadText: '',
       SelectFilter: '',
 
-      counter:0,
+      scroll: { lastPageY: 0, pageY: 0, down: false },
     }
   },
   methods: {
+    onScroll(){
+      let pageY = window.scrollY;
+      this.scroll.pageY = pageY;
+      this.scroll.down = ( this.scroll.pageY > this.scroll.lastPageY ) ? true : false;
+      this.scroll.lastPageY = this.scroll.pageY;
+    },
     publish(){
       const newPost = {
         name: "aluvy",
@@ -81,6 +86,11 @@ export default {
       this.SelectFilter = a;
       console.log(this.SelectFilter);
     });
+    window.addEventListener('scroll', this.onScroll);
+
+  },
+  unmounted(){
+    window.removeEventListener('scroll', this.onScroll);
   }
 }
 </script>
@@ -89,16 +99,15 @@ export default {
 @import './assets/css/style.css';
 @import './assets/css/cssgram.css';
 
-
-.header {height:4.4rem; background:#fff; position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; color:#333; box-sizing:border-box; padding:0 1.6rem; border-bottom:1px solid #ddd;}
+.header {height:4.4rem; background:#fff; position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; color:#333; box-sizing:border-box; padding:0 1.6rem; border-bottom:1px solid #ddd; z-index:999; transition:transform .2s;}
+.header.hide{transform:translateY(-100%);}
 .header .logo{position:absolute; left:50%; top:0; height:100%; transform:translateX(-50%);}
 .header .logo a{display:block; width:10.3rem; height:100%; background:url(./assets/img/logo.svg) 0 1rem no-repeat; background-size:100% auto;}
 
 .btn_more{display:block; width:calc(100% - 3.2rem); height:4.2rem; border-radius:0.5rem; border:1px solid #ddd; margin:2rem auto 1rem;}
 .no_post{text-align:center; padding:9rem 1.6rem; font-size:1.4rem; color:#999;}
 
-
-.footer {position:sticky; bottom:0; /*background:#000;*/ text-align:center;}
+.footer {position:sticky; bottom:0; text-align:center;}
 
 .file_wrap{position:relative;}
 .file_wrap .inputfile {position:absolute; left:0; top:0; width:1px; height:1px; overflow:hidden; padding:0; margin:0; border:0;  clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%); word-break:initial; word-wrap:initial; z-index:-1;}
