@@ -10,7 +10,7 @@ const store = createStore({
     }
   },
   mutations: {
-    setAdd(state, data){
+    setAddPost(state, data){
       state.post.unshift(data);
     },
     setMore(state, data){

@@ -1,6 +1,6 @@
 <template>
   <div v-if="tab==0">
-    <Post v-for="(a,i) in $store.state.post" :key="i" :post="a" :idx="i" />
+    <Post v-for="(a,i) in $store.state.post" :key="i" :idx="i" />
   </div>
 
   <div v-if="tab==1">

@@ -7,21 +7,21 @@
 
 <script>
 export default {
-    name: 'compFilterBox',
-    data(){
-        return {
-            msg: 'hello'
-        }
-    },
-    methods: {
-        mittEvent(){
-            this.emitter.emit('FilterName', this.filter);
-        }
-    },
-    props: {
-        uploadImage: String,
-        filter: String,
+  name: 'compFilterBox',
+  data(){
+    return {
+      msg: 'hello'
     }
+  },
+  methods: {
+    mittEvent(){
+      this.emitter.emit('FilterName', this.filter);
+    }
+  },
+  props: {
+    uploadImage: String,
+    filter: String,
+  }
 }
 </script>
 

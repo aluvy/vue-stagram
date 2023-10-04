@@ -1,34 +1,39 @@
 <template>
     <div class="post">
         <div class="post-header">
-            <div class="profile" :style="{ backgroundImage : `url('${post.userImage}')` }"></div>
-            <span class="profile-name">{{ post.name }}</span>
+            <div class="profile" :style="{ backgroundImage : `url('${post[idx].userImage}')` }"></div>
+            <span class="profile-name">{{ post[idx].name }}</span>
         </div>
-        <div class="post-body" :class="`${post.filter}`" :style="{ backgroundImage : `url('${post.postImage}')` }" @click="$store.commit('setLike', idx)"></div>
+        <div class="post-body" :class="`${post[idx].filter}`" :style="{ backgroundImage : `url('${post[idx].postImage}')` }" @click="setLike(idx)"></div>
         <div class="post-content">
             <div class="icon">
-                <button type="button" class="btn_like" :class="{on : $store.state.post[idx].liked }" title="좋아요" @click="$store.commit('setLike', idx)"></button>
+                <button type="button" class="btn_like" :class="{on : post[idx].liked }" title="좋아요" @click="setLike(idx)"></button>
                 <button type="button" class="btn_comment" title="댓글 달기"></button>
                 <button type="button" class="btn_dm" title="게시물 공유"></button>
                 <button type="button" class="btn_keep" title="저장"></button>
             </div>
 
-            <p class="like">{{ $store.state.post[idx].likes }} Likes</p>
-            <p class="content"><strong>{{ post.name }}</strong> {{ post.content }}</p>
-            <p class="date">{{ post.date }}</p>
+            <p class="like">{{ post[idx].likes }} Likes</p>
+            <p class="content"><strong>{{ post[idx].name }}</strong> {{ post[idx].content }}</p>
+            <p class="date">{{ post[idx].date }}</p>
         </div>
     </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
+
 export default {
-    name: 'compPost',
-    props: {
-        data: Object,
-        post: Object,
-        idx: Number,
-        filter: Text,
-    }
+  name: 'compPost',
+  methods:{
+    ...mapMutations(['setLike']),
+  },
+  computed:{
+    ...mapState(['post']),
+  },
+  props: {
+    idx: Number,
+  },
 }
 </script>
 

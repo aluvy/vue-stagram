@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Container from './components/Container.vue'
 
 export default {
@@ -36,6 +37,8 @@ export default {
       uploadImage: '',
       uploadText: '',
       SelectFilter: '',
+
+      counter:0,
     }
   },
   methods: {
@@ -50,7 +53,8 @@ export default {
         content: this.uploadText,
         filter: this.SelectFilter,
       };
-      this.$store.commit('setAdd', newPost);
+      // this.$store.commit('setAddPost', newPost);
+      this.setAddPost(newPost); // mapMutations
       this.tab = 0;
     },
     upload(e){
@@ -67,29 +71,7 @@ export default {
       this.uploadImage = url;
 
     },
-    more(){
-
-      // if( this.get > 1 ){
-
-      //   const btn_more = document.querySelector(".btn_more");
-      //   const p = document.createElement("p");
-      //   p.innerText = "게시물이 없습니다.";
-      //   p.classList.add("no_post");
-      //   btn_more.after(p);
-      //   btn_more.remove();
-
-      //   return;
-      // }
-      // axios.get(`https://codingapple1.github.io/vue/more${this.get}.json`)
-      // .then( result => {
-      //   this.post.push(result.data);
-      //   this.get++;
-      // })
-      // .catch( error =>{
-      //   // 요청 실패 시
-      //   console.log(error);
-      // })
-    }
+    ...mapMutations(['setAddPost']),  // store mutations 함수 이름
   },
   components:{
     Container,
