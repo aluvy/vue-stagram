@@ -5,7 +5,7 @@ module.exports = defineConfig({
   // assetsDir: './',
   pwa: {
     name: 'vue-stagram',
-    themeColor: '#4DBA87',
+    themeColor: '#fff',
     msTileColor: '#000000',
     icons: [
       {"src":"./favicon.ico","type":"image/png"},
