@@ -1,4 +1,4 @@
-# vue-stargram
+# vue-stagram
 
 ## Project setup
 ```
