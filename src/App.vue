@@ -1,21 +1,23 @@
 <template>
-  <div class="header" :class="{ hide : scroll.down }">
+  <div class="header" :class="{ hide : scroll.down, mypage: step==3 }">
     <h1 class="logo"><a href="./" title="vue-stagram"></a></h1>
     <div class="header-button-left">
-      <button type="button" v-if="tab==1 || tab==2" @click="tab=0">Cancel</button>
+      <button type="button" v-if="step==1 || step==2" @click="step=0">Cancel</button>
+      <button type="button" v-if="step==3" @click="step=0">Back</button>
     </div>
     <div class="header-button-right">
-      <button type="button" v-if="tab==1" @click="tab=2">Next</button>
-      <button type="button" v-if="tab==2" @click="publish">Write</button>
+      <button type="button" v-if="step==0" @click="step=3">mypage</button>
+      <button type="button" v-if="step==1" @click="step=2">Next</button>
+      <button type="button" v-if="step==2" @click="publish">Write</button>
     </div>
   </div>
 
-  <Container :tab="tab" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
+  <Container :step="step" :SelectFilter="SelectFilter" :uploadImage="uploadImage" @write=" n => uploadText = n " />
 
-  <button @click="$store.dispatch('getData')" type="button" class="btn_more" v-if="tab==0">더보기</button>
+  <button @click="$store.dispatch('getData')" type="button" class="btn_more" v-if="step==0">더보기</button>
 
   <div class="footer">
-    <div class="file_wrap" v-if="tab==0">
+    <div class="file_wrap" v-if="step==0">
       <input type="file" id="file" class="inputfile" accept="image/*" multiple @change="upload">
       <label for="file" class="input-plus" title="이미지 업로드"></label>
     </div>
@@ -31,7 +33,7 @@ export default {
   name:'App',
   data(){
     return {
-      tab: 0,
+      step: 0,
 
       uploadImage: '',
       uploadText: '',
@@ -42,6 +44,7 @@ export default {
   },
   methods: {
     onScroll(){
+      if( this.step != 0 ) return;
       let pageY = window.scrollY;
       this.scroll.pageY = pageY;
       this.scroll.down = ( this.scroll.pageY > this.scroll.lastPageY ) ? true : false;
@@ -60,7 +63,7 @@ export default {
       };
       // this.$store.commit('setAddPost', newPost);
       this.setAddPost(newPost); // mapMutations
-      this.tab = 0;
+      this.step = 0;
     },
     upload(e){
       const file = e.target.files;  // 업로드한 파일이 담겨있음
@@ -72,7 +75,7 @@ export default {
       }
 
       const url = URL.createObjectURL(file[0]); // 업로드한 파일의 임시 URL
-      this.tab = 1;
+      this.step = 1;
       this.uploadImage = url;
 
     },
@@ -101,6 +104,7 @@ export default {
 
 .header {height:4.4rem; background:#fff; position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; color:#333; box-sizing:border-box; padding:0 1.6rem; border-bottom:1px solid #ddd; z-index:999; transition:transform .2s;}
 .header.hide{transform:translateY(-100%);}
+.header.mypage{border-bottom:0 none;}
 .header .logo{position:absolute; left:50%; top:0; height:100%; transform:translateX(-50%);}
 .header .logo a{display:block; width:10.3rem; height:100%; background:url(./assets/img/logo.svg) 0 1rem no-repeat; background-size:100% auto;}
 

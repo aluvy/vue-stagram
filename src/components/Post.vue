@@ -1,23 +1,23 @@
 <template>
-    <div class="post">
-        <div class="post-header">
-            <div class="profile" :style="{ backgroundImage : `url('${post[idx].userImage}')` }"></div>
-            <span class="profile-name">{{ post[idx].name }}</span>
-        </div>
-        <div class="post-body" :class="`${post[idx].filter}`" :style="{ backgroundImage : `url('${post[idx].postImage}')` }" @click="setLike(idx)"></div>
-        <div class="post-content">
-            <div class="icon">
-                <button type="button" class="btn_like" :class="{on : post[idx].liked }" title="좋아요" @click="setLike(idx)"></button>
-                <button type="button" class="btn_comment" title="댓글 달기"></button>
-                <button type="button" class="btn_dm" title="게시물 공유"></button>
-                <button type="button" class="btn_keep" title="저장"></button>
-            </div>
-
-            <p class="like">{{ post[idx].likes }} Likes</p>
-            <p class="content"><strong>{{ post[idx].name }}</strong> {{ post[idx].content }}</p>
-            <p class="date">{{ post[idx].date }}</p>
-        </div>
+  <div class="post">
+    <div class="post-header">
+      <div class="profile" :style="{ backgroundImage : `url('${post[idx].userImage}')` }"></div>
+      <span class="profile-name">{{ post[idx].name }}</span>
     </div>
+    <div class="post-body" :class="`${post[idx].filter}`" :style="{ backgroundImage : `url('${post[idx].postImage}')` }" @click="setLike(idx)"></div>
+    <div class="post-content">
+      <div class="icon">
+        <button type="button" class="btn_like" :class="{on : post[idx].liked }" title="좋아요" @click="setLike(idx)"></button>
+        <button type="button" class="btn_comment" title="댓글 달기"></button>
+        <button type="button" class="btn_dm" title="게시물 공유"></button>
+        <button type="button" class="btn_keep" title="저장"></button>
+      </div>
+
+      <p class="like">{{ post[idx].likes }} Likes</p>
+      <p class="content"><strong>{{ post[idx].name }}</strong> {{ post[idx].content }}</p>
+      <p class="date">{{ post[idx].date }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .post-header {height:6rem; padding:0 1.6rem; display:flex; align-items:center;}
 .profile {width:3.2rem; height:3.2rem; border-radius:50%; background-position:50% 50%; background-repeat:no-repeat; background-size:100% auto; background-color:#ddd;}
 .profile-name {padding-left:1rem; color:#262626; font-weight:600;}

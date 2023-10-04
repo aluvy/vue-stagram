@@ -1,8 +1,8 @@
 <template>
-    <div @click="mittEvent">
-        <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
-        <p class="filter-name"><slot></slot></p>
-    </div>
+  <div @click="mittEvent">
+    <div class="filter-item" :class="`${filter}`" :style="{ backgroundImage : `url(${uploadImage})` }"></div>
+    <p class="filter-name"><slot></slot></p>
+  </div>
 </template>
 
 <script>

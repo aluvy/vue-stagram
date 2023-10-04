@@ -7,6 +7,7 @@ const store = createStore({
   state () {
     return {
       post: post,
+      follower: [],
     }
   },
   mutations: {
