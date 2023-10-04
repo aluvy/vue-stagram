@@ -1,6 +1,8 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-stagram/dist' : '/',
+  // assetsDir: './',
   pwa: {
     name: 'vue-stagram',
     themeColor: '#4DBA87',
